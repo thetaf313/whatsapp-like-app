@@ -25,6 +25,11 @@ export const store = {
     return this.state.currentUser || JSON.parse(localStorage.getItem("currentUser"));
   },
 
+  logoutCurrentUser() {
+    this.state.currentUser = null;
+    localStorage.removeItem('currentUser');
+  },
+
   getContacts() {
     return this.state.contacts;
   },
@@ -65,8 +70,10 @@ export const store = {
   async loginWithPhone(phone) {
     const res = await fetch(`${API_URL}/users?phone=${phone}`);
     const users = await res.json();
+    console.log(users);
     if (users.length > 0) {
       this.currentUser = users[0];
+      this.setCurrentUser(this.currentUser);
       await this.loadAll(); // Optionnel : pour recharger les contacts, chats, etc.
       return true;
     }

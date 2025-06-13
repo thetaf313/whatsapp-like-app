@@ -54,9 +54,6 @@ export function ChatListView() {
           ${ChatItem()}
           ${ChatItem()}
           ${ChatItem()}
-          ${ChatItem()}
-          ${ChatItem()}
-          ${ChatItem()}
         </ul>
       </div>
     `,

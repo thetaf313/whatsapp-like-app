@@ -12,8 +12,8 @@ export function initLoginFormEvents() {
   clearErrors();
   loginBtn.addEventListener("click", () => {
     let phone = phoneInput.value.trim();
-    phone = phone.replace(/\s/gi, '');
-    phone = phone.replace(/[+]/, '00');
+    phone = phone.replace(/\s/gi, "");
+    phone = phone.replace(/[+]/, "00");
     console.log(phone);
 
     clearErrors();
@@ -24,26 +24,34 @@ export function initLoginFormEvents() {
       return;
     }
     if (!/^\d{9,14}$/.test(phone)) {
-      showError(
-        "phoneError",
-        "Le format du numéro de téléphone est invalide."
-      );
+      showError("phoneError", "Le format du numéro de téléphone est invalide.");
       isValid = false;
       return;
     }
 
     if (isValid) {
+      console.log("ready to authenticate user");
+      loginBtn.querySelector('#spinner').classList.remove('hidden');
+
+      // authenticateUser(phone)
+      //   .then((res) => {
+      //       window.location.href = "/";
+      //       console.log(res);
+      //   })
+      //   .catch((error) => {
+      //     console.error("Authentication error:", error);
+      //     showError(
+      //       "globalError",
+      //       "Identifiant introuvable."
+      //     );
+      //   });
       authenticateUser(phone)
         .then((res) => {
-            console.log(res);
-            window.location.href = "/";
+          window.location.href = "/";
         })
         .catch((error) => {
           console.error("Authentication error:", error);
-          showError(
-            "globalError",
-            "Identifiant introuvable."
-          );
+          showError("globalError", "Identifiant introuvable.");
         });
     }
   });

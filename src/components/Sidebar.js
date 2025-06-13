@@ -1,6 +1,7 @@
 import { initSidebarEvents } from "../events/sidebarEvents";
 import { conversationManager } from "../modules/conversationManager";
 import { store } from "../services/store";
+import { getInitials } from "../utils/helper";
 
 // Sidebar Component View
 export function Sidebar() {
@@ -56,9 +57,9 @@ export function Sidebar() {
             ${
               user.avatar
                 ? `
-                    <img id="sideProfilePic" src="/assets/${user.avatar}" alt="${user.profile}" class="w-10 h-10 rounded-full cursor-pointer" /> `
+                    <img id="sideProfilePic" src="/assets/${user.avatar}" alt="${user.username}" class="w-10 h-10 rounded-full cursor-pointer" /> `
                 : `
-                    <span id="sideProfilePic" class="flex justify-center items-center w-10 h-10 rounded-full bg-gray-200 text-sm cursor-pointer">${user.profile}</span>`
+                    <span id="sideProfilePic" class="flex justify-center items-center w-10 h-10 rounded-full bg-gray-200 text-sm cursor-pointer">${getInitials(user.firstName + ' ' + user.lastName)}</span>`
             }
             </li>
         </ul>
