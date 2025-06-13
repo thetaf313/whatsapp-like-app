@@ -6,7 +6,6 @@ export const conversationManager = {
 
     renderChatListView() {
         const chatListContainer = document.querySelector('#chatListContainer');
-
         renderComponent(ChatListView, chatListContainer);
     }
 

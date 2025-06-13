@@ -23,4 +23,24 @@
     background-color: #8d8c8c7a;
     color: #111;
   }
+
+  #tabsContainer li.active {
+    background-color: #0a332b;
+    color: #0aa17f;
+  }
+
+  #chatListView .chat-list::-webkit-scrollbar, #contactListView .content::-webkit-scrollbar {
+    width: 6px;
+  } 
+   
+  #chatListView .chat-list::-webkit-scrollbar-track, #contactListView .content::-webkit-scrollbar-track {
+    background: none;
+  }
+
+  #chatListView .chat-list::-webkit-scrollbar-thumb, #contactListView .content::-webkit-scrollbar-thumb {
+    background: #374045;
+    border-radius: 5px;
+  }
+
+  
 }

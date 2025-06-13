@@ -16,7 +16,7 @@ export function Sidebar() {
           class="side-menu list-none h-full flex flex-col gap-1 text-xs p-3" 
         >
           <li
-            class="flex flex-col justify-center items-center rounded-full cursor-pointer w-12 h-12 active-menu"
+            class="menu-item flex flex-col justify-center items-center rounded-full cursor-pointer w-12 h-12 active-menu" data-section="chats"
           >
             <span class="fill-gray-400 relative">
                 <strong class="badge bg-green-500 absolute -top-2 -right-2 w-5 h-5 rounded-full flex justify-center items-center text-md font-semibold">7</strong>
@@ -24,7 +24,7 @@ export function Sidebar() {
             </span>
           </li>
           <li
-            class="w-12 h-12 flex flex-col justify-center items-center rounded-full p-2 cursor-pointer"
+            class="menu-item w-12 h-12 flex flex-col justify-center items-center rounded-full p-2 cursor-pointer" data-section="status"
           >
             
             <span class="fill-gray-400 relative">
@@ -33,14 +33,14 @@ export function Sidebar() {
             </span>
           </li>
           <li
-            class="flex flex-col justify-center items-center rounded-full p-2 cursor-pointer w-12 h-12"
+            class="menu-item flex flex-col justify-center items-center rounded-full p-2 cursor-pointer w-12 h-12" data-section="channel"
           >
             <span class="fill-gray-400">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 20 20"><path fill="" fill-rule="evenodd" d="M5.05 3.636a1 1 0 0 1 0 1.414a7 7 0 0 0 0 9.9a1 1 0 1 1-1.414 1.414a9 9 0 0 1 0-12.728a1 1 0 0 1 1.414 0m9.9 0a1 1 0 0 1 1.414 0a9 9 0 0 1 0 12.728a1 1 0 1 1-1.414-1.414a7 7 0 0 0 0-9.9a1 1 0 0 1 0-1.414M7.879 6.464a1 1 0 0 1 0 1.414a3 3 0 0 0 0 4.243a1 1 0 1 1-1.415 1.414a5 5 0 0 1 0-7.07a1 1 0 0 1 1.415 0m4.242 0a1 1 0 0 1 1.415 0a5 5 0 0 1 0 7.072a1 1 0 0 1-1.415-1.415a3 3 0 0 0 0-4.242a1 1 0 0 1 0-1.415M10 9a1 1 0 0 1 1 1v.01a1 1 0 1 1-2 0V10a1 1 0 0 1 1-1" clip-rule="evenodd"/></svg>
             </span>
           </li>
           <li
-            class="flex flex-col justify-center items-center rounded-full p-2 cursor-pointer w-12 h-12"
+            class="menu-item flex flex-col justify-center items-center rounded-full p-2 cursor-pointer w-12 h-12" data-section="community"
           >
             <span class="fill-gray-400">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="" d="M0 18v-1.575q0-1.075 1.1-1.75T4 14q.325 0 .625.013t.575.062q-.35.525-.525 1.1t-.175 1.2V18zm6 0v-1.625q0-.8.438-1.463t1.237-1.162T9.588 13T12 12.75q1.325 0 2.438.25t1.912.75t1.225 1.163t.425 1.462V18zm13.5 0v-1.625q0-.65-.162-1.225t-.488-1.075q.275-.05.563-.062T20 14q1.8 0 2.9.663t1.1 1.762V18zM8.125 16H15.9q-.25-.5-1.388-.875T12 14.75t-2.512.375T8.125 16M4 13q-.825 0-1.412-.587T2 11q0-.85.588-1.425T4 9q.85 0 1.425.575T6 11q0 .825-.575 1.413T4 13m16 0q-.825 0-1.412-.587T18 11q0-.85.588-1.425T20 9q.85 0 1.425.575T22 11q0 .825-.575 1.413T20 13m-8-1q-1.25 0-2.125-.875T9 9q0-1.275.875-2.137T12 6q1.275 0 2.138.863T15 9q0 1.25-.862 2.125T12 12m0-2q.425 0 .713-.288T13 9t-.288-.712T12 8t-.712.288T11 9t.288.713T12 10m0-1"/></svg>
@@ -48,11 +48,11 @@ export function Sidebar() {
           </li>
           
         </ul>
-        <ul class="flex flex-col justify-center items-center mb-4 gap-2">
-            <li id="settings" class=" flex flex-col justify-center items-center rounded-full p-2 cursor-pointer" >
+        <ul class="side-menu flex flex-col justify-center items-center mb-4 gap-2">
+            <li id="settings" class="menu-item flex flex-col justify-center items-center rounded-full p-2 cursor-pointer" data-section="settings">
                 <svg class="fill-gray-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill=""><circle cx="12" cy="12" r="2" stroke="" stroke-width="2"/><path fill="" d="m5.399 5.88l.5-.867a1 1 0 0 0-1.234.186zM3.4 9.344l-.956-.295a1 1 0 0 0 .456 1.16zm-.002 5.311l-.5-.866a1 1 0 0 0-.455 1.162zm2 3.464l-.734.68a1 1 0 0 0 1.234.186zm4.6 2.655H9a1 1 0 0 0 .778.975zm4.001.002l.223.975a1 1 0 0 0 .777-.975zM18.6 18.12l-.5.866a1 1 0 0 0 1.233-.186zm1.998-3.466l.956.295a1 1 0 0 0-.456-1.16zm.002-5.311l.5.866a1 1 0 0 0 .455-1.162zm-2-3.465l.734-.679a1 1 0 0 0-1.234-.187zM14 3.225h1a1 1 0 0 0-.777-.975zm-4-.002l-.223-.975A1 1 0 0 0 9 3.223zm4 1.849h-1zm5 8.66l-.5.866zm-2 3.464l-.5.866zM5 13.732l.5.866zm2-6.928l-.5.866zM4.356 9.639a8 8 0 0 1 1.776-3.08L4.665 5.2a10 10 0 0 0-2.22 3.85zM5.072 16a8 8 0 0 1-.718-1.64l-1.91.592c.217.701.515 1.388.896 2.048zm1.06 1.441A8 8 0 0 1 5.073 16L3.34 17c.38.66.827 1.261 1.325 1.8zm7.646 2.361a8 8 0 0 1-3.556-.002l-.445 1.95a10 10 0 0 0 4.446.002zm5.866-5.441a8 8 0 0 1-1.776 3.08l1.467 1.36a10 10 0 0 0 2.22-3.85zM18.928 8c.306.53.545 1.08.718 1.64l1.91-.592A10 10 0 0 0 20.66 7zm-1.06-1.441c.397.43.754.91 1.06 1.441l1.732-1a10 10 0 0 0-1.325-1.8zm-7.646-2.361a8 8 0 0 1 3.556.002l.444-1.95a10 10 0 0 0-4.445-.002zm.778.874v-1.85H9v1.85zm-3.5.866l-1.601-.925l-1 1.732l1.6.925zm-3 6.928l-1.601.924l1 1.732l1.6-.924zm1-3.464l-1.6-.923l-1 1.732l1.6.923zM11 20.775v-1.847H9v1.847zM6.5 16.33l-1.601.925l1 1.732l1.6-.925zm12.601.925L17.5 16.33l-1 1.732l1.601.925zM15 20.777v-1.849h-2v1.85zm5.101-12.3l-1.601.925l1 1.732l1.601-.925zm.998 5.312l-1.599-.923l-1 1.732l1.6.923zM15 5.072V3.225h-2v1.847zm3.101-.059l-1.601.925l1 1.732l1.601-.925zM13 5.072c0 2.31 2.5 3.753 4.5 2.598l-1-1.732a1 1 0 0 1-1.5-.866zm5.5 4.33c-2 1.155-2 4.041 0 5.196l1-1.732a1 1 0 0 1 0-1.732zm-1 6.928c-2-1.154-4.5.289-4.5 2.598h2a1 1 0 0 1 1.5-.866zM11 18.928c0-2.31-2.5-3.753-4.5-2.598l1 1.732a1 1 0 0 1 1.5.866zm-5.5-4.33c2-1.155 2-4.041 0-5.196l-1 1.732a1 1 0 0 1 0 1.732zM9 5.072a1 1 0 0 1-1.5.866l-1 1.732c2 1.154 4.5-.289 4.5-2.598z"/></g></svg>
             </li>
-            <li class="flex flex-col justify-center items-center rounded-full p-1 cursor-pointer mt-2">
+            <li class="menu-item flex flex-col justify-center items-center rounded-full p-1 cursor-pointer mt-2" data-section="profile">
             ${
               user.avatar
                 ? `

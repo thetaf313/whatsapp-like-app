@@ -22,9 +22,9 @@ export function authenticateUser(phone) {
       reject('failed to log in.');
     }
    })
-  // if (user) {
-  //   store.setCurrentUser(user);
-  //   return true;
-  // }
-  // return false;
+}
+
+
+export function logoutUser() {
+  
 }
