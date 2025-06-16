@@ -1,3 +1,4 @@
+import { store } from "../services/store";
 import { renderComponent } from "../utils/dom";
 import { ChatAreaContainer } from "./ChatAreaContainer";
 import { ChatListContainer } from "./ChatListContainer";
@@ -16,6 +17,7 @@ export function App() {
         `,
         bindEvents: () => {
             Sidebar().bindEvents();
+            store.loadAll();
             // const app = document.querySelector('#app');
             // renderComponent(Sidebar, app);
             // renderComponent(ChatListContainer, app);

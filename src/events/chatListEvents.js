@@ -43,8 +43,8 @@ export function initChatListEvents() {
       // Remove active class from all items and add to the clicked item
       document
         .querySelectorAll(".chat-list-item")
-        .forEach((el) => el.classList.remove("active"));
-      item.classList.add("active");
+        .forEach((el) => el.classList.remove("active-chat"));
+      item.classList.add("active-chat");
     });
   });
 }

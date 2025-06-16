@@ -1,7 +1,17 @@
-// AddContactFormEvents Events
-
 import { contactManager } from "../modules/contactManager";
-import { clearErrors, showError } from "../utils/helper";
+import { contactService } from "../services/contactService";
+import { store } from "../services/store";
+import {
+  clearErrors,
+  clearWarnings,
+  isAppValidPhone,
+  showError,
+  showWarning,
+  showSuccess,
+  isAppUniquePhone,
+  generateNewUserId,
+  getUserStatusByPhone,
+} from "../utils/helper";
 
 export function initAddContactFormEvents() {
   const addContactFormView = document.querySelector("#addContactFormView");
@@ -11,37 +21,101 @@ export function initAddContactFormEvents() {
   const firstName = addContactFormView.querySelector("#firstName");
   const lastName = addContactFormView.querySelector("#lastName");
   const phoneNumber = addContactFormView.querySelector("#phoneNumber");
+  const globalSuccess = document.querySelector("#globalSuccess");
 
-  //return to ContactListView
+  // Retour à la liste des contacts
   previousBtn.addEventListener("click", () => {
     contactManager.renderContactListView();
   });
 
-  //add contact
-  addContactBtn.addEventListener("click", () => {
-    console.log("addContactBtn clicked");
+  // Validation à la volée du numéro
+  phoneNumber.addEventListener("input", function () {
+    clearWarnings();
     clearErrors();
-    let fnInput = firstName.value.trim();
-    let lnInput = lastName.value.trim();
+    this.value = this.value.replace(/[^0-9]/g, "");
+
+    const phone = this.value;
+
+    if (phone.length === 9) {
+      if (isAppValidPhone(phone)) {
+        showWarning("phoneNumber", "Ce numéro est sur WhatsApp");
+      } else {
+        showWarning("phoneNumber", "Ce numéro n'est pas sur WhatsApp.");
+      }
+    } else if (phone.length !== 9) {
+      showWarning(
+        "phoneNumber",
+        "Le numéro est invalide (9 chiffres attendus)."
+      );
+    }
+  });
+
+  // Soumission du formulaire
+  addContactBtn.addEventListener("click", () => {
+    clearErrors();
+    clearWarnings();
+
+    const fnInput = firstName.value.trim();
+    const lnInput = lastName.value.trim();
     let pnInput = phoneNumber.value.trim();
 
     let isValid = true;
 
     if (!fnInput) {
+      showError("firstName", "Le champ prénom est requis.");
       isValid = false;
-      showError("firstName", "Le champ prenom est requis.");
     }
 
     if (!pnInput) {
+      showError("phoneNumber", "Le champ téléphone est requis.");
       isValid = false;
-      showError("phoneNumber", "Le champ telephone est requis.");
-    } else if (!/^\d{9,}$/.test(phone)) {
-      showError("phoneNumber", "Le numéro n'est pas valide.");
+    } else if (!/^\d{9}$/.test(pnInput)) {
+      showError(
+        "phoneNumber",
+        "Le numéro de téléphone doit contenir exactement 9 chiffres."
+      );
       isValid = false;
     }
 
-    if (isValid) {
-      console.log("valid form!");
+    // const phoneIsAppValid = isAppValidPhone(pnInput);
+    // const phoneIsAppUnique = isAppUniquePhone(pnInput);
+
+    const { isOnApp, isContact, user } = getUserStatusByPhone(pnInput);
+
+    if (!isOnApp) {
+      showWarning("phoneNumber", "Ce numéro n'est pas sur WhatsApp.");
+      return;
     }
+
+    if (isContact) {
+      showError("phoneNumber", "Ce contact est déjà enregistré.");
+      return;
+    }
+
+    if (isValid && isOnApp && !isContact) {
+      const newContact = {
+        id: generateNewUserId(store.users),
+        name: `${fnInput} ${lnInput || ""}`.trim(),
+      };
+
+      console.log(newContact);
+      contactService.addContactToUser(newContact.id, newContact.name);
+
+      showSuccess("globalSuccess", "Contact ajouté avec succès ✔");
+
+      // Vider les champs
+      firstName.value = "";
+      lastName.value = "";
+      phoneNumber.value = "";
+
+      // Retour à la liste après 2 secondes
+      setTimeout(() => {
+        contactManager.renderContactListView();
+      }, 2000);
+    }
+
+    // if (isValid && phoneIsAppValid && !phoneIsAppUnique) {
+    //   showError("phoneNumber", "Ce contact existe deja.");
+    // }
   });
 }

@@ -1,5 +1,5 @@
 import { initAddContactFormEvents } from "../events/AddContactFormEvents";
-import { arrowReloadIcon, chevronRightIcon, confirmIcon, LeftArrowIcon, phoneIcon, userIcon } from "./Icons";
+import { arrowReloadIcon, chevronRightIcon, confirmIcon, downArrowIcon, LeftArrowIcon, phoneIcon, userIcon } from "./Icons";
 
 // AddContactForm Component
 export function AddContactForm() {
@@ -30,13 +30,20 @@ export function AddContactForm() {
                         </div>
                     </div>
       
-                    <div class="flex gap-3 items-center w-full m-4">
-                        <span class="fill-gray-500">${phoneIcon()}</span>
-                        <div class="flex-1">
-                        <input type="text" id="phoneNumber" placeholder="Numero"
-                        class="p-2 border-b-2 border-gray-300 focus:border-[#00a884] w-full focus:outline-none bg-inherit" />
-                        <div class="error-message text-red-500 text-sm mt-1" data-error-for="phoneNumber"></div>
+                    <div class="w-full flex flex-col m-4">
+                        <div class="flex gap-3">
+                            <span class="fill-gray-500">${phoneIcon()}</span>
+                            <div class="flex items-center gap-3 border-b-2 border-gray-300 pb-[5px] focus:border-[#00a884]">
+                                <span class="text-gray-400">SN +221</span>
+                                <span class="fill-gray-400">${downArrowIcon()}</span>
+                            </div>
+                            <div class="flex-1 border-gray-300">
+                            <input type="text" id="phoneNumber" placeholder="Numero"
+                            class="border-b-2 focus:border-[#00a884] w-full focus:outline-none bg-inherit pb-2" />
+                            </div>
                         </div>
+                        <div class="error-message text-red-500 text-sm mt-1 ml-8" data-error-for="phoneNumber"></div>
+                        <div class="warnig-message text-gray-400 text-sm mt-1 ml-8" data-warning-for="phoneNumber"></div>
                     </div>
 
                     <div class="cursor-pointer flex items-center gap-2 text-gray-400">
@@ -50,6 +57,9 @@ export function AddContactForm() {
                         </div>
 
                     </div>
+
+                    <p id="globalSuccess" class="hidden text-sm mt-2"></p>
+
      
 
                     <button id="addContactBtn" type="button"

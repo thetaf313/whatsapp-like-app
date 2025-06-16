@@ -24,16 +24,32 @@ function findUserByPhone(phone) {
 //     }
 //   });
 // }
+function timeoutPromise(ms) {
+  return new Promise((_, reject) => {
+    setTimeout(() => {
+      reject(new Error("Une erreur est survenue lors de la connexion. Réessayez plus tard."));
+    }, ms);
+  });
+}
 
 export async function authenticateUser(phone) {
-  const success = await store.loginWithPhone(phone);
-  if (success) {
-    store.setCurrentUser(store.currentUser);
-    return "logged in successfully.";
-  } else {
-    throw new Error("failed to log in.");
+  try {
+    const success = await Promise.race([
+      store.loginWithPhone(phone),
+      timeoutPromise(10000),
+    ]);
+
+    if (success) {
+      store.setCurrentUser(store.getCurrentUser());
+      return "logged in successfully.";
+    } else {
+      throw new Error("Identifiants incorrects.");
+    }
+  } catch (error) {
+    throw error;
   }
 }
+
 
 export function logoutUser() {
   store.logoutCurrentUser();

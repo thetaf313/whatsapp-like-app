@@ -1,11 +1,28 @@
 import { initContactListEvents } from "../events/contactListEvents";
+import { contactService } from "../services/contactService";
+import { store } from "../services/store";
 import { ContactCreateLink } from "./ContactCreateLink";
 import { ContactItem } from "./ContactItem";
 import { LeftArrowIcon, SearchIcon } from "./Icons";
 import { SearchBox } from "./SearchBox";
 
+function renderContactList(contacts = []) {
+  return contacts.map((contact) => ContactItem(contact)).join("");
+}
+
 // ContactListView Component
 export function ContactListView() {
+  const props = {
+    icon: SearchIcon(),
+    placeHolder: "Rechercher un contact",
+  };
+  const contacts = [...contactService.getContacts()];
+  const currentUser = store.getCurrentUser();
+  currentUser.name = currentUser.firstName + ' ' + currentUser.lastName;
+  console.log(currentUser);
+  contacts.unshift(currentUser);
+  console.log(contacts);
+
   return {
     template: `
             <div id="contactListView" class="contact-list-view w-full h-full flex flex-col">
@@ -15,9 +32,7 @@ export function ContactListView() {
                     </button>
                     <h1 class="text-lg font-light">Nouvelle discussion</h1>
                 </div>
-                ${SearchBox({
-                    icon: SearchIcon()
-                })}
+                ${SearchBox(props)}
 
                 <div class="content flex-1 mt-1 overflow-y-scroll">
                     ${ContactCreateLink()}
@@ -25,18 +40,19 @@ export function ContactListView() {
                         <h1 class="text-lg text-[#1a6e65] py-5">CONTACTS SUR WHATSAPP</h1>
                         <hr class="border-b border-[#8180803a] ml-14" />
                     </div>
-                    ${ContactItem()}
-                    ${ContactItem()}
-                    ${ContactItem()}
-                    ${ContactItem()}
-                    ${ContactItem()}
+        
+                    <ul class="flex flex-col">
+                        ${renderContactList(contacts)}
+                    </ul>
+
+
                 </div>
 
             </div>
         `,
-        bindEvents: () => {
-            console.log('ContactListView events applied');
-            initContactListEvents();
-        }
+    bindEvents: () => {
+      console.log("ContactListView events applied");
+      initContactListEvents();
+    },
   };
 }

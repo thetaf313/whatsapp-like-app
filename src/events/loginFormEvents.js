@@ -5,6 +5,7 @@ import { clearErrors, showError } from "../utils/helper";
 
 export function initLoginFormEvents() {
   const loginBtn = document.querySelector("#loginBtn");
+  const spinner = loginBtn.querySelector("#spinner");
   const phoneInput = document.querySelector("#phone");
   const globalError = document.querySelector("#globalError");
   const phoneError = document.querySelector("#phoneError");
@@ -31,27 +32,25 @@ export function initLoginFormEvents() {
 
     if (isValid) {
       console.log("ready to authenticate user");
-      loginBtn.querySelector('#spinner').classList.remove('hidden');
+      loginBtn.classList.toggle("cursor-not-allowed");
+      loginBtn.disabled = true;
+      spinner.classList.remove("hidden");
+      spinner.nextElementSibling.textContent = "Loading...";
 
-      // authenticateUser(phone)
-      //   .then((res) => {
-      //       window.location.href = "/";
-      //       console.log(res);
-      //   })
-      //   .catch((error) => {
-      //     console.error("Authentication error:", error);
-      //     showError(
-      //       "globalError",
-      //       "Identifiant introuvable."
-      //     );
-      //   });
       authenticateUser(phone)
         .then((res) => {
+          console.log(res);
           window.location.href = "/";
         })
         .catch((error) => {
-          console.error("Authentication error:", error);
-          showError("globalError", "Identifiant introuvable.");
+          console.error("Authentication error:", error.message);
+          showError("globalError", error.message);
+        })
+        .finally(() => {
+          loginBtn.classList.toggle("cursor-not-allowed");
+          loginBtn.disabled = false;
+          spinner.classList.add("hidden");
+          spinner.nextElementSibling.textContent = "Se connecter";
         });
     }
   });
