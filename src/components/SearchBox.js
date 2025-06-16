@@ -2,8 +2,6 @@ import { SearchIcon } from "./Icons";
 
 // SearchBox Component
 export function SearchBox(props = {}) {
-    console.log(props.icon);
-    console.log(props.placeHolder);
     return `
         <div
           class="search flex justify-center items-center gap-2 bg-[#222E35] rounded-xl px-4 mx-4"
