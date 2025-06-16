@@ -1,5 +1,6 @@
 import { logoutUser } from "../modules/authManager";
 import { contactManager } from "../modules/contactManager";
+import { conversationManager } from "../modules/conversationManager";
 import { store } from "../services/store";
 
 // chatListEvents module
@@ -36,15 +37,16 @@ export function initChatListEvents() {
   document.querySelectorAll(".chat-list-item").forEach((item) => {
     item.addEventListener("click", () => {
       console.log('chat item selected');
-      // const chatId = item.getAttribute("data-chat-id");
-      // Load the chat view for the selected chat
-      // loadChatView(chatId);
-
+      
       // Remove active class from all items and add to the clicked item
       document
         .querySelectorAll(".chat-list-item")
         .forEach((el) => el.classList.remove("active-chat"));
       item.classList.add("active-chat");
+
+       // store.selectedChatId = item.dataSet.id;
+      // Load the chat view for the selected chat
+      conversationManager.renderChatAreaView();
     });
   });
 }

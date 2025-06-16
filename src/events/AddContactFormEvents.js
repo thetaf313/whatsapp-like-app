@@ -94,7 +94,7 @@ export function initAddContactFormEvents() {
 
     if (isValid && isOnApp && !isContact) {
       const newContact = {
-        id: generateNewUserId(store.users),
+        id: user.id, // 👈 On utilise l'id réel de l'utilisateur WhatsApp
         name: `${fnInput} ${lnInput || ""}`.trim(),
       };
 

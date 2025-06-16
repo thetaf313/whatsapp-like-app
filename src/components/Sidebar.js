@@ -68,7 +68,10 @@ export function Sidebar() {
     bindEvents: () => {
       console.log("events for sidebar applied");
       initSidebarEvents();
-      conversationManager.renderChatListView();
+      conversationManager.renderChatListViewSkeleton();
+      store.loadAll().then((_) => {
+        conversationManager.renderChatListView();
+      });
     },
   };
 }
