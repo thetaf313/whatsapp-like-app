@@ -29,15 +29,15 @@
     color: #0aa17f;
   }
 
-  #chatListView .chat-list::-webkit-scrollbar, #contactListView .content::-webkit-scrollbar {
+  #chatListView .chat-list::-webkit-scrollbar, #contactListView .content::-webkit-scrollbar, #addContactToGroup .content::-webkit-scrollbar {
     width: 6px;
   } 
    
-  #chatListView .chat-list::-webkit-scrollbar-track, #contactListView .content::-webkit-scrollbar-track {
+  #chatListView .chat-list::-webkit-scrollbar-track, #contactListView .content::-webkit-scrollbar-track, #addContactToGroup .chat-list::-webkit-scrollbar-track {
     background: none;
   }
 
-  #chatListView .chat-list::-webkit-scrollbar-thumb, #contactListView .content::-webkit-scrollbar-thumb {
+  #chatListView .chat-list::-webkit-scrollbar-thumb, #contactListView .content::-webkit-scrollbar-thumb, #addContactToGroup .content::-webkit-scrollbar-thumb {
     background: #374045;
     border-radius: 5px;
   }
