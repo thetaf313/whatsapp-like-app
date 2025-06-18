@@ -32,9 +32,7 @@
       "firstName": "Julio",
       "lastName": "Kebe",
       "username": "Julio",
-      "contacts": [
-        { "id": "u1", "name": "Alice perso" }
-      ],
+      "contacts": [{ "id": "u1", "name": "Alice perso" }],
       "blockedUsers": [],
       "archivedChats": []
     }

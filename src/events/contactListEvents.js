@@ -10,6 +10,8 @@ export function initContactListEvents() {
     const newContactBtn = contactListView.querySelector('#newContactBtn');
     const newGroupBtn = contactListView.querySelector('#newGroupBtn');
 
+    
+
     //return to chats
     previousBtn.addEventListener('click', () => {
         conversationManager.renderChatListView();
@@ -25,5 +27,7 @@ export function initContactListEvents() {
         console.log('clicked new group btn');
         groupManager.renderAddContactToGroup();
     })
+
+
 
 }

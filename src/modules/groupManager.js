@@ -1,4 +1,5 @@
 import { AddContactToGroup } from "../components/AddContactToGroup";
+import { NewGroupForm } from "../components/NewGroupForm";
 import { renderComponent } from "../utils/dom";
 
 export const groupManager = {
@@ -8,5 +9,11 @@ export const groupManager = {
         console.log('rendering AddContactToGroupView');
         renderComponent(AddContactToGroup, chatListContainer);
 
+    },
+
+    renderNewGroupForm() {
+        const chatListContainer = document.querySelector('#chatListContainer');
+        console.log('rendering AddContactToGroupView');
+        renderComponent(NewGroupForm, chatListContainer);
     }
 }

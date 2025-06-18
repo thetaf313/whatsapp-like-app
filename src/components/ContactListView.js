@@ -16,9 +16,12 @@ export function ContactListView() {
     icon: SearchIcon(),
     placeHolder: "Rechercher un contact",
   };
-  const contacts = [...contactService.getContacts()];
+  const contacts = [...contactService.getContacts()].sort((a, b) =>
+    a.name.localeCompare(b.name)
+  );
+
   const currentUser = store.getCurrentUser();
-  currentUser.name = currentUser.firstName + ' ' + currentUser.lastName;
+  currentUser.name = currentUser.firstName + " " + currentUser.lastName;
   console.log(currentUser);
   contacts.unshift(currentUser);
   console.log(contacts);
@@ -45,9 +48,7 @@ export function ContactListView() {
                         ${renderContactList(contacts)}
                     </ul>
 
-
                 </div>
-
             </div>
         `,
     bindEvents: () => {
