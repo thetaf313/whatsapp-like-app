@@ -156,3 +156,13 @@ export function generateNewUserId(users) {
     .reduce((max, curr) => Math.max(max, curr), 0);
   return `u${maxId + 1}`;
 }
+
+
+export function getInitialAvatar(firstName = "", lastName = "", className = "") {
+  const initials = `${firstName[0] || ""}${lastName[0] || ""}`.toUpperCase();
+  return `
+    <div class="flex items-center justify-center bg-gray-600 text-white rounded-full ${className}">
+      ${initials}
+    </div>
+  `;
+}

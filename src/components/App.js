@@ -8,9 +8,10 @@ import { Sidebar } from "./Sidebar";
 
 // App Component
 export function App() {
+  document.body.classList.add('bg-[#262523]');
   return {
     template: `
-            <div id="app" class="w-[92%] h-[92%] flex border-2 rounded-lg">
+            <div id="app" class="w-[96%] h-[94%] flex rounded-lg">
                 ${Sidebar().template}
                 ${ChatListContainer().template}
                 ${ChatAreaContainer().template}

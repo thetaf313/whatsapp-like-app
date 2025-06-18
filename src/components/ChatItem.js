@@ -21,6 +21,7 @@
 // }
 
 import { store } from "../services/store";
+import { arrowDownOutlineIcon } from "./Icons";
 
 
 // ChatItem Component
@@ -33,19 +34,20 @@ export function ChatItem(chat = {}) {
   const messagePreview = getMessagePreview(lastMsg);
 
   return `
-    <div class="chat-list-item flex items-center gap-4 min-h-[72px] px-4 py-2 hover:bg-[#5d5b5b28] cursor-pointer" data-id="${chat.chatId}">
+    <div class="chat-list-item ${chat.type === 'broadcast' ? 'hidden' : 'flex'} items-center gap-4 min-h-[72px] px-4 py-2 hover:bg-[#5d5b5b28] cursor-pointer transition" data-id="${chat.chatId}">
       <div
         class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-12 w-fit"
         style='background-image: url("https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(name)}");'
       ></div>
       <div class="flex flex-wrap flex-1">
         <div class="flex justify-between items-center w-full">
-          <span class="text-[#cfdfe8]">${name}</span>
+          <span class="text-[#cfdfe8] p-1">${name}</span>
           <span class="text-xs text-green-500">${time}</span>
         </div>
         <div class="flex justify-between items-center w-full">
-          <span class="text-sm text-[#cfdfe8]">${messagePreview}</span>
-          <span class="w-5 h-5 text-xs text-gray-900 bg-green-500 rounded-full flex justify-center items-center">1</span>
+          <span class="text-sm text-[#cfdfe8] flex-1 p-1">${messagePreview}</span>
+          <span class="notif w-5 h-5 text-xs text-gray-900 bg-green-500 rounded-full flex justify-center items-center">1</span>
+          <span class="context-btn fill-gray-500 stroke-gray-500 hidden ml-1">${arrowDownOutlineIcon()}</span>
         </div>
       </div>
     </div>

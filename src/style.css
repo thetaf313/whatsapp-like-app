@@ -19,8 +19,8 @@
     position: relative;
   }
 
-  .active-menu {
-    background-color: #8d8c8c7a;
+  .active-menu, .active-chat {
+    background-color: #8d8c8c59;
     color: #111;
   }
 
@@ -29,17 +29,21 @@
     color: #0aa17f;
   }
 
-  #chatListView .chat-list::-webkit-scrollbar, #contactListView .content::-webkit-scrollbar, #addContactToGroup .content::-webkit-scrollbar {
+  #chatListView .chat-list::-webkit-scrollbar, #contactListView .content::-webkit-scrollbar, #addContactToGroup .content::-webkit-scrollbar, #content #contentBody::-webkit-scrollbar {
     width: 6px;
   } 
    
-  #chatListView .chat-list::-webkit-scrollbar-track, #contactListView .content::-webkit-scrollbar-track, #addContactToGroup .chat-list::-webkit-scrollbar-track {
+  #chatListView .chat-list::-webkit-scrollbar-track, #contactListView .content::-webkit-scrollbar-track, #addContactToGroup .chat-list::-webkit-scrollbar-track, #content #contentBody::-webkit-scrollbar-track {
     background: none;
   }
 
-  #chatListView .chat-list::-webkit-scrollbar-thumb, #contactListView .content::-webkit-scrollbar-thumb, #addContactToGroup .content::-webkit-scrollbar-thumb {
+  #chatListView .chat-list::-webkit-scrollbar-thumb, #contactListView .content::-webkit-scrollbar-thumb, #addContactToGroup .content::-webkit-scrollbar-thumb, #content #contentBody::-webkit-scrollbar-thumb {
     background: #374045;
     border-radius: 5px;
+  }
+
+  #chatListView .chat-list-item:hover .context-btn {
+    @apply block;
   }
 
   

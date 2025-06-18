@@ -10,6 +10,7 @@ export function initChatListEvents() {
   const contextMenuEl = document.querySelector('.contextMenu');
   const logoutBtn = contextMenuEl.querySelector('.logout-btn');
   const contactBtn = document.querySelector('#contactBtn');
+  const contextBtns = document.querySelectorAll('.chat-list-item .context-btn');
 
   contextMenuBtn.addEventListener('click', (e) => {
     e.stopPropagation();
@@ -33,6 +34,13 @@ export function initChatListEvents() {
     logoutUser();
   })
 
+  contextBtns.forEach(el => {
+    el.addEventListener('click', (e) => {
+      e.stopPropagation();
+      console.log('show popup for chatscontextMenu');
+    })
+  })
+
     
   document.querySelectorAll(".chat-list-item").forEach((item) => {
     item.addEventListener("click", () => {
@@ -43,7 +51,10 @@ export function initChatListEvents() {
         .querySelectorAll(".chat-list-item")
         .forEach((el) => el.classList.remove("active-chat"));
       item.classList.add("active-chat");
+      item.querySelector('.notif').classList.add('hidden');
 
+      const chatId = item.dataset.id;
+      store.setActiveChat(chatId);
        // store.selectedChatId = item.dataSet.id;
       // Load the chat view for the selected chat
       conversationManager.renderChatAreaView();

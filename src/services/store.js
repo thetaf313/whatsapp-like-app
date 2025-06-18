@@ -28,6 +28,7 @@ export const store = {
   validationCodes: [],
   filteredDiscussions: [],
   filteredContacts: [],
+  selectedGroupMembers: [],
   selectedChatId: null,
   conversations: [],
   currentConversation: null,
@@ -49,6 +50,19 @@ export const store = {
     localStorage.removeItem("currentUser");
   },
 
+  setActiveChat(chatId) {
+    this.selectedChatId = chatId;
+  },
+  getActiveChat() {
+    return this.chats.find((chat) => chat.id === this.selectedChatId);
+  },
+  updateChat(chatId, updatedData) {
+    const index = this.chats.findIndex((c) => c.id === chatId);
+    if (index !== -1) {
+      this.chats[index] = updatedData;
+    }
+  },
+
   // 🔄 Chargement initial
   async loadAll() {
     const [users, chats, groups, broadcasts, statuses, validationCodes] =
@@ -67,7 +81,7 @@ export const store = {
     this.broadcasts = broadcasts;
     this.statuses = statuses;
     this.validationCodes = validationCodes;
-    console.log('data have been loaded');
+    console.log("data have been loaded");
   },
 
   // 🔐 Connexion par numéro (avec code)
